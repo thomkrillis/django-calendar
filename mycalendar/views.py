@@ -40,6 +40,9 @@ class EditView(generic.DetailView):
     model = Event
     template_name = 'mycalendar/edit.html'
 
+    def get_queryset(self):
+        return Event.objects.filter(end_date__gte=timezone.now())
+
 def submitEdit(request, event_id):
     event = get_object_or_404(Event, pk=event_id)
     event.event_name = request.POST['name']
