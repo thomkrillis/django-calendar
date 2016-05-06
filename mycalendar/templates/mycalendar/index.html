@@ -1,0 +1,15 @@
+<h1>Upcoming Calendar Events</h1>
+
+{% if event_list %}
+    {% for event in event_list %}
+        <h2><a href="{% url 'mycalendar:edit' event.id %}">{{event.event_name}}</a></h2>
+        <p>{{event.start_date}} - {{event.end_date}}</p>
+        <br />
+    {% endfor %}
+{% else %}
+    <p>No events coming up.</p>
+{% endif %}
+
+<form action="{% url 'mycalendar:new' %}">
+<input type="submit" value="Add new event" />
+</form>
